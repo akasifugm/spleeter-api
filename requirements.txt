@@ -1,8 +1,9 @@
 flask
 gunicorn
 spleeter==2.1.0
-tensorflow==2.6.0
+tensorflow==2.5.0
 numpy==1.18.5
 ffmpeg
 pip==25.0.1
+
 
