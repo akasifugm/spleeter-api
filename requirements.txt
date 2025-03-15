@@ -6,6 +6,8 @@ numpy==1.18.5
 ffmpeg
 pip
 werkzeug==2.0.3
+protobuf==3.20.3
+
 
 
 
