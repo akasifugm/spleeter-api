@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import os
 import logging
-import tensorflow as tf  # Ensure TensorFlow is imported
+import tensorflow as tf
 from spleeter.separator import Separator
 
 # Force TensorFlow to run on CPU
@@ -35,11 +35,11 @@ def separate_audio():
         file.save(input_path)  # Save uploaded file
         logging.info(f"File saved: {input_path}")  # Debugging log
 
-        # Ensure Spleeter reads from the correct path
-        separator = Separator('spleeter:5stems')
+        # **🔴 Limit Spleeter to use 1 CPU thread**
+        separator = Separator('spleeter:5stems', multiprocess=False)
         separator.separate_to_file(input_path, OUTPUT_DIR)
 
-        # Find the processed files (e.g., vocals.mp3, drums.mp3, etc.)
+        # Find the processed files
         processed_files = os.listdir(os.path.join(OUTPUT_DIR, filename.split('.')[0]))
         processed_files_urls = [
             f"/download/{filename.split('.')[0]}/{f}" for f in processed_files
