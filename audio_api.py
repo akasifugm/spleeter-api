@@ -4,8 +4,11 @@ import logging
 import tensorflow as tf
 from spleeter.separator import Separator
 
-# Force TensorFlow to run on CPU
+# 🚀 **Fix: Force TensorFlow & Spleeter to Use CPU Only**
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+# 🚀 **Fix: Reduce TensorFlow Memory Usage**
+tf.config.experimental.set_memory_growth(tf.config.experimental.list_physical_devices('CPU')[0], True)
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -35,7 +38,7 @@ def separate_audio():
         file.save(input_path)  # Save uploaded file
         logging.info(f"File saved: {input_path}")  # Debugging log
 
-        # **🔴 Limit Spleeter to use 1 CPU thread**
+        # 🚀 **Fix: Reduce Memory Usage by Setting `multiprocess=False`**
         separator = Separator('spleeter:5stems', multiprocess=False)
         separator.separate_to_file(input_path, OUTPUT_DIR)
 
