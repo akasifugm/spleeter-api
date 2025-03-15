@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "b8aa62c9-6c22-42e8-bddc-915d997f9c8c",
+		"name": "5-Stem Separation API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43123585"
+	},
+	"item": [
+		{
+			"name": "Separate Audio 5-Stem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/spleeter/sample1.mp3"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/separate\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"separate\n"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
